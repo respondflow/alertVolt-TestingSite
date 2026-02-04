@@ -12,11 +12,13 @@ export default function Signup() {
     smsConsent: false,
     termsConsent: false,
   })
+  
+  const [submitted, setSubmitted] = useState(false)
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     console.log('Form submitted:', formData)
-    alert('Thank you for signing up! This is a demo - no data has been sent.')
+    setSubmitted(true)
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,6 +27,39 @@ export default function Signup() {
       ...prev,
       [name]: type === 'checkbox' ? checked : value
     }))
+  }
+
+  if (submitted) {
+    return (
+      <div className="bg-gray-50 min-h-full py-12">
+        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-white rounded-lg shadow-md p-8 text-center">
+            <div className="mb-6">
+              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <h2 className="text-3xl font-bold text-gray-900 mb-2">Thank You for Signing Up!</h2>
+              <p className="text-lg text-gray-600">
+                We'll email you signup instructions shortly.
+              </p>
+            </div>
+            <div className="space-y-4">
+              <p className="text-gray-600">
+                Check your inbox at <strong>{formData.email}</strong> for next steps.
+              </p>
+              <button
+                onClick={() => setSubmitted(false)}
+                className="inline-block bg-volt-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-volt-700 transition-colors"
+              >
+                Submit Another Signup
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
   }
 
   return (
@@ -71,13 +106,12 @@ export default function Signup() {
 
             <div>
               <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
-                Phone Number (for SMS alerts) <span className="text-red-500">*</span>
+                Phone Number (for SMS alerts)
               </label>
               <input
                 type="tel"
                 id="phone"
                 name="phone"
-                required
                 value={formData.phone}
                 onChange={handleChange}
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-volt-500 focus:border-transparent"
@@ -113,7 +147,6 @@ export default function Signup() {
                         type="checkbox"
                         id="smsConsent"
                         name="smsConsent"
-                        required
                         checked={formData.smsConsent}
                         onChange={handleChange}
                         className="w-4 h-4 text-volt-600 border-gray-300 rounded focus:ring-volt-500"
@@ -121,7 +154,7 @@ export default function Signup() {
                     </div>
                     <div className="ml-3">
                       <label htmlFor="smsConsent" className="text-sm text-gray-700">
-                        <span className="font-medium">I agree to receive SMS alerts from AlertVolt.</span> By checking this box, I consent to receive automated text messages from AlertVolt at the phone number provided. Message frequency varies based on alert activity. Message and data rates may apply. Reply STOP to opt out at any time. Reply HELP for help. Consent is not required to use our services. <span className="text-red-500">*</span>
+                        <span className="font-medium">I agree to receive SMS alerts from AlertVolt.</span> By checking this box, I consent to receive automated text messages from AlertVolt at the phone number provided. Message frequency varies based on alert activity. Message and data rates may apply. Reply STOP to opt out at any time. Reply HELP for help. Consent is not required to use our services.
                       </label>
                     </div>
                   </div>
