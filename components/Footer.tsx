@@ -48,6 +48,27 @@ export default function Footer() {
               </li>
             </ul>
           </div>
+
+          <div>
+            <h3 className="font-semibold text-gray-900 mb-4">Contact</h3>
+            <ul className="space-y-2 text-sm text-gray-600">
+              <li>
+                <a href="mailto:support@alertvolt.com" className="hover:text-volt-600 transition-colors">
+                  support@alertvolt.com
+                </a>
+              </li>
+              <li>
+                <a href="tel:+19182128861" className="hover:text-volt-600 transition-colors">
+                  +1 (918) 212-8861
+                </a>
+              </li>
+              <li className="pt-1">
+                12 N Cheyenne Ave Suite 410<br />
+                Tulsa, OK 74103<br />
+                US
+              </li>
+            </ul>
+          </div>
         </div>
         
         <div className="border-t border-gray-200 mt-8 pt-8 text-center text-sm text-gray-500">
